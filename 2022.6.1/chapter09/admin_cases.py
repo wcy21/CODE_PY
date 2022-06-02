@@ -26,7 +26,7 @@ class Privileges():
         self.privileges = ['can add post', 'can delete post', 'can ban user']
 
     def show_privileges(self):
-        print("Admin have the following privileges:")
+        print("\nAdmin have the following privileges:")
         for privilege in self.privileges:
             print("- " + privilege)
 
@@ -38,7 +38,6 @@ class Admin(User):
         super().__init__(first_name, last_name, age)
         self.privileges = Privileges()
 
-
-admin = Admin('blue', 'dog', 20)
-admin.greet_user()
-admin.privileges.show_privileges()
+# admin = Admin('blue', 'dog', 20)
+# admin.greet_user()
+# admin.privileges.show_privileges()

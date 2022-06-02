@@ -1,37 +1,6 @@
-class Car():
-    """模拟汽车"""
+"""表示电动车的类"""
 
-    def __init__(self, make, model, year):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.odometer_reading = 0
-
-    def get_descriptive_name(self):
-        """返回整洁的描述信息"""
-        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
-        return long_name.title()
-
-    def read_odometer(self):
-        """打印汽车里程"""
-        print("This car has " + str(self.odometer_reading) + " miles on it.")
-
-    def update_odometer(self, mileage):
-        """
-        指定里程表读数
-        禁止读数回调
-        """
-        if mileage >= self.odometer_reading:
-            self.odometer_reading = mileage
-        else:
-            print("You can't roll back an odometer!")
-
-    def increment_odometer(self, miles):
-        """里程表增加指定量"""
-        if miles >= 0:
-            self.odometer_reading += miles
-        else:
-            print("You can't roll back an odometer!")
+from car import Car
 
 
 class Battery():
@@ -71,17 +40,16 @@ class ElectricCar(Car):
         super().__init__(make, model, year)
         self.battery = Battery()
 
-
 # my_tesla = ElectricCar('tesla', 'model s', 2016)
 # print(my_tesla.get_descriptive_name())
 # my_tesla.battery.describe_battery()
 # my_tesla.battery.get_range()
 
-my_bugatti = ElectricCar('Bugatti', 'EB16.4', 2010)
-
-print("before update:")
-my_bugatti.battery.get_range()
-
-print("after update:")
-my_bugatti.battery.upgrade_battery()
-my_bugatti.battery.get_range()
+# my_bugatti = ElectricCar('Bugatti', 'EB16.4', 2010)
+#
+# print("before update:")
+# my_bugatti.battery.get_range()
+#
+# print("after update:")
+# my_bugatti.battery.upgrade_battery()
+# my_bugatti.battery.get_range()
