@@ -1,0 +1,3 @@
+In Python you can store and analyse data.
+In Python you can do file manipulation.
+In Python you can do numerical calculations.
