@@ -105,6 +105,27 @@ def create_fleet(ai_settings, screen, ship, aliens):
                          row_number)
 
 
+def check_fleet_edges(ai_settings, aliens):
+    """若外星人群达到边缘更改状态"""
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            change_fleet_direction(ai_settings, aliens)
+            break
+
+
+def change_fleet_direction(ai_settings, aliens):
+    """将整群外星人下移并改变方向"""
+    for alien in aliens.sprites():
+        alien.rect.y += ai_settings.fleet_drop_speed
+    ai_settings.fleet_direction *= -1
+
+
+def update_aliens(ai_settings, aliens):
+    """检查是否有外星人位于边缘，并更新外星人群位置"""
+    check_fleet_edges(ai_settings, aliens)
+    aliens.update()
+
+
 def update_screen(ai_settings, screen, ship, aliens, bullets):
     """更新屏幕上的图像，并切换新屏幕"""
     # 重绘屏幕
