@@ -6,7 +6,7 @@ from alien import Alien
 
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
-    """相应按键"""
+    """响应按键"""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
     elif event.key == pygame.K_LEFT:

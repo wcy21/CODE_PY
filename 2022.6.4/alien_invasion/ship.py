@@ -13,7 +13,7 @@ class Ship():
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
-        # 将每搜新飞船放在屏幕底部中央
+        # 将每艘新飞船放在屏幕底部中央
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
 
