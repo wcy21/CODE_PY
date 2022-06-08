@@ -64,7 +64,7 @@ def create_rain(screen, rains, rain_number, row_number):
     rains.add(rain)
 
 
-def check_fleet_edges(rains, screen, screen_width):
+def check_fleet_edges(rains, screen):
     """到达下边界消失并重新生成雨滴"""
     # 到达下边界雨滴消失
     # for rain in rains.sprites():
@@ -77,9 +77,9 @@ def check_fleet_edges(rains, screen, screen_width):
             rain.y = - rain.rect.height
 
 
-def update_rains(rains, screen, screen_width):
+def update_rains(rains, screen):
     """检查是否到达下边界，并更新雨滴位置"""
-    check_fleet_edges(rains, screen, screen_width)
+    check_fleet_edges(rains, screen)
     rains.update()
 
 
@@ -120,7 +120,7 @@ def run_game():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-        update_rains(rains, screen, screen_width)
+        update_rains(rains, screen)
         update_screen(bg_color, screen, rains)
 
 
