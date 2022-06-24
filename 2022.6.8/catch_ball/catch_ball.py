@@ -92,24 +92,24 @@ def create_ball(screen, screen_width, balls):
     balls.add(ball)
 
 
-def check_fleet_edges(balls):
+def check_fleet_edges(balls, screen_width):
     """到达下边界消失并重新生成球"""
     for ball in balls.sprites():
         if ball.check_edges():
-            ball.create_again()
+            ball.create(screen_width)
             break
 
 
 def check_ball_dog_collections(screen, balls, dog):
     """检查球和狗狗是否相碰"""
-    if pygame.sprite.spritecollideany(dog, balls):
-        ball = Ball(screen)
-        balls.add(ball)
+    # if pygame.sprite.spritecollide(dog, balls, True):
+    #     ball = Ball(screen)
+    #     balls.add(ball)
 
 
-def update_ball(balls, dog, screen):
+def update_ball(balls, dog, screen, screen_width):
     """检查是否达到下边界或碰到狗狗，更新位置"""
-    check_fleet_edges(balls)
+    check_fleet_edges(balls, screen_width)
     check_ball_dog_collections(screen, balls, dog)
     balls.update()
 
@@ -157,7 +157,7 @@ def run_game():
     pygame.init()
     screen_width = 1200
     screen_height = 800
-    bg_color = (124, 200, 230)
+    bg_color = (193, 210, 240)
     screen = pygame.display.set_mode(
         (screen_width, screen_height))
     pygame.display.set_caption("catch_ball")
@@ -170,7 +170,7 @@ def run_game():
     while True:
         check_events(dog)
         dog.update()
-        update_ball(balls, screen, screen_width)
+        update_ball(balls, screen, screen_width, screen_width)
         update_screen(bg_color, screen, dog, balls)
 
 
