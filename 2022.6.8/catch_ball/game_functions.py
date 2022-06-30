@@ -1,5 +1,6 @@
 import random
 import sys
+from time import sleep
 
 import pygame
 
@@ -45,16 +46,24 @@ def create_ball(ai_settings, screen, balls):
     balls.add(ball)
 
 
-def check_fleet_edges(ai_settings, screen, dog, balls):
+def check_fleet_edges(ai_settings, stats, screen, dog, balls):
     """到达下边界消失并重新生成球"""
-    check_dog_balls_collections(ai_settings, screen, balls, dog)
+    check_dog_balls_collections(ai_settings, stats, screen, balls, dog)
 
     for ball in balls.copy():
         if ball.rect.top >= ai_settings.screen_height:
-            balls.remove(ball)
+            # 球到达下边界，执行未接到球的操作
+            if stats.ball_not_catch < ai_settings.ball_limit:
+                stats.ball_not_catch += 1
+                balls.remove(ball)
+
+                sleep(0.5)
+
+            else:
+                stats.game_active = False
 
 
-def check_dog_balls_collections(ai_settings, screen, balls, dog):
+def check_dog_balls_collections(ai_settings, stats, screen, balls, dog):
     """检查球和狗狗是否相碰"""
     collections = pygame.sprite.spritecollide(dog, balls, True)
 
@@ -62,9 +71,9 @@ def check_dog_balls_collections(ai_settings, screen, balls, dog):
         create_ball(ai_settings, screen, balls)
 
 
-def update_ball(ai_settings, screen, dog, balls):
+def update_ball(ai_settings, stats, screen, dog, balls):
     """检查是否达到下边界或碰到狗狗，更新位置"""
-    check_fleet_edges(ai_settings, screen, dog, balls)
+    check_fleet_edges(ai_settings, stats, screen, dog, balls)
     balls.update()
 
 

@@ -12,3 +12,4 @@ class Settings():
 
         # 球的设置
         self.ball_speed_factor = 0.9
+        self.ball_limit = 3
