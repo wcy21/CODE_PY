@@ -134,19 +134,23 @@ def change_fleet_direction(ai_settings, aliens):
 
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """响应被外星人撞到的飞船"""
-    # 减少ship_left
-    stats.ships_left -= 1
+    if stats.ships_left > 0:
+        # 减少ship_left
+        stats.ships_left -= 1
 
-    # 清空外星人列表和子弹列表
-    aliens.empty()
-    bullets.empty()
+        # 清空外星人列表和子弹列表
+        aliens.empty()
+        bullets.empty()
 
-    # 创建一群新的外星人群，并将飞船放到屏幕底端中央
-    create_fleet(ai_settings, screen, ship, aliens)
-    ship.center_ship()
+        # 创建一群新的外星人群，并将飞船放到屏幕底端中央
+        create_fleet(ai_settings, screen, ship, aliens)
+        ship.center_ship()
 
-    # 暂停
-    sleep(0.5)
+        # 暂停
+        sleep(0.5)
+
+    else:
+        stats.game_active = False
 
 
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
